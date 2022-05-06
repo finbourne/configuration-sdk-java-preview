@@ -15,7 +15,7 @@
     "licenseName": "MIT",
     "licenseUrl": "https://github.com/finbourne/configuration-sdk-java-preview/blob/master/LICENSE.md",
     "hideGenerationTimestamp": true,
-    "metaRequestIdHeader": "configurationservice-meta-requestid",
+    "metaRequestIdHeader": "configurationstore-meta-requestid",
     "scmConnection": "git@github.com:finbourne/configuration-sdk-java-preview.git",
     "scmDeveloperConnection": "git@github.com:finbourne/configuration-sdk-java-preview.git",
     "scmUrl": "https://github.com/finbourne/configuration-sdk-java-preview/"
