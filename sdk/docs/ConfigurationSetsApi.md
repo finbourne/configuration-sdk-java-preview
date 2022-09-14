@@ -4,26 +4,27 @@ All URIs are relative to *https://www.lusid.com/configuration*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addConfigurationToSet**](ConfigurationSetsApi.md#addConfigurationToSet) | **POST** /api/sets/{type}/{scope}/{code}/items | [EXPERIMENTAL] AddConfigurationToSet: Add a configuration item to an existing set
-[**createConfigurationSet**](ConfigurationSetsApi.md#createConfigurationSet) | **POST** /api/sets | [EXPERIMENTAL] CreateConfigurationSet: Create a configuration set
-[**deleteAccessToken**](ConfigurationSetsApi.md#deleteAccessToken) | **DELETE** /api/sets/personal/me | [EXPERIMENTAL] DeleteAccessToken: Delete any stored Personal Access Token for the current user
-[**deleteConfigurationItem**](ConfigurationSetsApi.md#deleteConfigurationItem) | **DELETE** /api/sets/{type}/{scope}/{code}/items/{key} | [EXPERIMENTAL] DeleteConfigurationItem: Remove the specified configuration item from the specified configuration set
-[**deleteConfigurationSet**](ConfigurationSetsApi.md#deleteConfigurationSet) | **DELETE** /api/sets/{type}/{scope}/{code} | [EXPERIMENTAL] DeleteConfigurationSet: Deletes a configuration set along with all their configuration items
-[**generateAccessToken**](ConfigurationSetsApi.md#generateAccessToken) | **PUT** /api/sets/personal/me | [EXPERIMENTAL] GenerateAccessToken: Generate a Personal Access Token for the current user and stores it in the me token
-[**getConfigurationItem**](ConfigurationSetsApi.md#getConfigurationItem) | **GET** /api/sets/{type}/{scope}/{code}/items/{key} | [EXPERIMENTAL] GetConfigurationItem: Get the specific configuration item within an existing set
-[**getConfigurationSet**](ConfigurationSetsApi.md#getConfigurationSet) | **GET** /api/sets/{type}/{scope}/{code} | [EXPERIMENTAL] GetConfigurationSet: Get a configuration set, including all the associated metadata. By default secrets will not be revealed
-[**getSystemConfigurationItems**](ConfigurationSetsApi.md#getSystemConfigurationItems) | **GET** /api/sets/system/{code}/items/{key} | [EXPERIMENTAL] GetSystemConfigurationItems: Get the specific system configuration items within a system set  All users have access to this endpoint
-[**getSystemConfigurationSets**](ConfigurationSetsApi.md#getSystemConfigurationSets) | **GET** /api/sets/system/{code} | [EXPERIMENTAL] GetSystemConfigurationSets: Get the specified system configuration sets, including all their associated metadata. By default secrets will not be revealed  All users have access to this endpoint
-[**listConfigurationSets**](ConfigurationSetsApi.md#listConfigurationSets) | **GET** /api/sets | [EXPERIMENTAL] ListConfigurationSets: List all configuration sets summaries (I.e. list of scope/code combinations available)
-[**updateConfigurationItem**](ConfigurationSetsApi.md#updateConfigurationItem) | **PUT** /api/sets/{type}/{scope}/{code}/items/{key} | [EXPERIMENTAL] UpdateConfigurationItem: Update a configuration item&#39;s value and/or description
-[**updateConfigurationSet**](ConfigurationSetsApi.md#updateConfigurationSet) | **PUT** /api/sets/{type}/{scope}/{code} | [EXPERIMENTAL] UpdateConfigurationSet: Update the description of a configuration set
+[**addConfigurationToSet**](ConfigurationSetsApi.md#addConfigurationToSet) | **POST** /api/sets/{type}/{scope}/{code}/items | [EARLY ACCESS] AddConfigurationToSet: Add a configuration item to an existing set
+[**checkAccessTokenExists**](ConfigurationSetsApi.md#checkAccessTokenExists) | **HEAD** /api/sets/personal/me | [BETA] CheckAccessTokenExists: Check the Personal Access Token exists for the current user
+[**createConfigurationSet**](ConfigurationSetsApi.md#createConfigurationSet) | **POST** /api/sets | [EARLY ACCESS] CreateConfigurationSet: Create a configuration set
+[**deleteAccessToken**](ConfigurationSetsApi.md#deleteAccessToken) | **DELETE** /api/sets/personal/me | [EARLY ACCESS] DeleteAccessToken: Delete any stored Personal Access Token for the current user
+[**deleteConfigurationItem**](ConfigurationSetsApi.md#deleteConfigurationItem) | **DELETE** /api/sets/{type}/{scope}/{code}/items/{key} | [EARLY ACCESS] DeleteConfigurationItem: Remove the specified configuration item from the specified configuration set
+[**deleteConfigurationSet**](ConfigurationSetsApi.md#deleteConfigurationSet) | **DELETE** /api/sets/{type}/{scope}/{code} | [EARLY ACCESS] DeleteConfigurationSet: Deletes a configuration set along with all their configuration items
+[**generateAccessToken**](ConfigurationSetsApi.md#generateAccessToken) | **PUT** /api/sets/personal/me | [EARLY ACCESS] GenerateAccessToken: Generate a Personal Access Token for the current user and stores it in the me token
+[**getConfigurationItem**](ConfigurationSetsApi.md#getConfigurationItem) | **GET** /api/sets/{type}/{scope}/{code}/items/{key} | [EARLY ACCESS] GetConfigurationItem: Get the specific configuration item within an existing set
+[**getConfigurationSet**](ConfigurationSetsApi.md#getConfigurationSet) | **GET** /api/sets/{type}/{scope}/{code} | [EARLY ACCESS] GetConfigurationSet: Get a configuration set, including all the associated metadata. By default secrets will not be revealed
+[**getSystemConfigurationItems**](ConfigurationSetsApi.md#getSystemConfigurationItems) | **GET** /api/sets/system/{code}/items/{key} | [EARLY ACCESS] GetSystemConfigurationItems: Get the specific system configuration items within a system set  All users have access to this endpoint
+[**getSystemConfigurationSets**](ConfigurationSetsApi.md#getSystemConfigurationSets) | **GET** /api/sets/system/{code} | [EARLY ACCESS] GetSystemConfigurationSets: Get the specified system configuration sets, including all their associated metadata. By default secrets will not be revealed  All users have access to this endpoint
+[**listConfigurationSets**](ConfigurationSetsApi.md#listConfigurationSets) | **GET** /api/sets | [EARLY ACCESS] ListConfigurationSets: List all configuration sets summaries (I.e. list of scope/code combinations available)
+[**updateConfigurationItem**](ConfigurationSetsApi.md#updateConfigurationItem) | **PUT** /api/sets/{type}/{scope}/{code}/items/{key} | [EARLY ACCESS] UpdateConfigurationItem: Update a configuration item&#39;s value and/or description
+[**updateConfigurationSet**](ConfigurationSetsApi.md#updateConfigurationSet) | **PUT** /api/sets/{type}/{scope}/{code} | [EARLY ACCESS] UpdateConfigurationSet: Update the description of a configuration set
 
 
 <a name="addConfigurationToSet"></a>
 # **addConfigurationToSet**
 > ConfigurationSet addConfigurationToSet(type, scope, code, createConfigurationItem, userId)
 
-[EXPERIMENTAL] AddConfigurationToSet: Add a configuration item to an existing set
+[EARLY ACCESS] AddConfigurationToSet: Add a configuration item to an existing set
 
 ### Example
 ```java
@@ -95,11 +96,73 @@ Name | Type | Description  | Notes
 **404** | No configuration set exists with the provided identifiers |  -  |
 **0** | Error response |  -  |
 
+<a name="checkAccessTokenExists"></a>
+# **checkAccessTokenExists**
+> checkAccessTokenExists()
+
+[BETA] CheckAccessTokenExists: Check the Personal Access Token exists for the current user
+
+### Example
+```java
+// Import classes:
+import com.finbourne.configuration.ApiClient;
+import com.finbourne.configuration.ApiException;
+import com.finbourne.configuration.Configuration;
+import com.finbourne.configuration.auth.*;
+import com.finbourne.configuration.models.*;
+import com.finbourne.configuration.api.ConfigurationSetsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://www.lusid.com/configuration");
+    
+    // Configure OAuth2 access token for authorization: oauth2
+    OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
+    oauth2.setAccessToken("YOUR ACCESS TOKEN");
+
+    ConfigurationSetsApi apiInstance = new ConfigurationSetsApi(defaultClient);
+    try {
+      apiInstance.checkAccessTokenExists();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ConfigurationSetsApi#checkAccessTokenExists");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Personal Access Token exists |  -  |
+**404** | The Personal Access Token does not exist |  -  |
+**0** | Error response |  -  |
+
 <a name="createConfigurationSet"></a>
 # **createConfigurationSet**
 > ConfigurationSet createConfigurationSet(createConfigurationSet, userId)
 
-[EXPERIMENTAL] CreateConfigurationSet: Create a configuration set
+[EARLY ACCESS] CreateConfigurationSet: Create a configuration set
 
 ### Example
 ```java
@@ -168,7 +231,7 @@ Name | Type | Description  | Notes
 # **deleteAccessToken**
 > deleteAccessToken()
 
-[EXPERIMENTAL] DeleteAccessToken: Delete any stored Personal Access Token for the current user
+[EARLY ACCESS] DeleteAccessToken: Delete any stored Personal Access Token for the current user
 
 ### Example
 ```java
@@ -229,7 +292,7 @@ null (empty response body)
 # **deleteConfigurationItem**
 > deleteConfigurationItem(type, scope, code, key, userId)
 
-[EXPERIMENTAL] DeleteConfigurationItem: Remove the specified configuration item from the specified configuration set
+[EARLY ACCESS] DeleteConfigurationItem: Remove the specified configuration item from the specified configuration set
 
 ### Example
 ```java
@@ -304,7 +367,7 @@ null (empty response body)
 # **deleteConfigurationSet**
 > deleteConfigurationSet(type, scope, code, userId)
 
-[EXPERIMENTAL] DeleteConfigurationSet: Deletes a configuration set along with all their configuration items
+[EARLY ACCESS] DeleteConfigurationSet: Deletes a configuration set along with all their configuration items
 
 ### Example
 ```java
@@ -377,7 +440,7 @@ null (empty response body)
 # **generateAccessToken**
 > PersonalAccessToken generateAccessToken(action)
 
-[EXPERIMENTAL] GenerateAccessToken: Generate a Personal Access Token for the current user and stores it in the me token
+[EARLY ACCESS] GenerateAccessToken: Generate a Personal Access Token for the current user and stores it in the me token
 
 ### Example
 ```java
@@ -444,7 +507,7 @@ Name | Type | Description  | Notes
 # **getConfigurationItem**
 > ConfigurationItem getConfigurationItem(type, scope, code, key, reveal, userId)
 
-[EXPERIMENTAL] GetConfigurationItem: Get the specific configuration item within an existing set
+[EARLY ACCESS] GetConfigurationItem: Get the specific configuration item within an existing set
 
 ### Example
 ```java
@@ -522,7 +585,7 @@ Name | Type | Description  | Notes
 # **getConfigurationSet**
 > ConfigurationSet getConfigurationSet(type, scope, code, reveal, userId)
 
-[EXPERIMENTAL] GetConfigurationSet: Get a configuration set, including all the associated metadata. By default secrets will not be revealed
+[EARLY ACCESS] GetConfigurationSet: Get a configuration set, including all the associated metadata. By default secrets will not be revealed
 
 ### Example
 ```java
@@ -598,7 +661,7 @@ Name | Type | Description  | Notes
 # **getSystemConfigurationItems**
 > ResourceListOfConfigurationItem getSystemConfigurationItems(code, key, reveal)
 
-[EXPERIMENTAL] GetSystemConfigurationItems: Get the specific system configuration items within a system set  All users have access to this endpoint
+[EARLY ACCESS] GetSystemConfigurationItems: Get the specific system configuration items within a system set  All users have access to this endpoint
 
 ### Example
 ```java
@@ -670,7 +733,7 @@ Name | Type | Description  | Notes
 # **getSystemConfigurationSets**
 > ResourceListOfConfigurationSet getSystemConfigurationSets(code, reveal)
 
-[EXPERIMENTAL] GetSystemConfigurationSets: Get the specified system configuration sets, including all their associated metadata. By default secrets will not be revealed  All users have access to this endpoint
+[EARLY ACCESS] GetSystemConfigurationSets: Get the specified system configuration sets, including all their associated metadata. By default secrets will not be revealed  All users have access to this endpoint
 
 ### Example
 ```java
@@ -740,7 +803,7 @@ Name | Type | Description  | Notes
 # **listConfigurationSets**
 > ResourceListOfConfigurationSetSummary listConfigurationSets(type, userId)
 
-[EXPERIMENTAL] ListConfigurationSets: List all configuration sets summaries (I.e. list of scope/code combinations available)
+[EARLY ACCESS] ListConfigurationSets: List all configuration sets summaries (I.e. list of scope/code combinations available)
 
 ### Example
 ```java
@@ -809,7 +872,7 @@ Name | Type | Description  | Notes
 # **updateConfigurationItem**
 > ConfigurationItem updateConfigurationItem(type, scope, code, key, updateConfigurationItem, userId)
 
-[EXPERIMENTAL] UpdateConfigurationItem: Update a configuration item&#39;s value and/or description
+[EARLY ACCESS] UpdateConfigurationItem: Update a configuration item&#39;s value and/or description
 
 ### Example
 ```java
@@ -887,7 +950,7 @@ Name | Type | Description  | Notes
 # **updateConfigurationSet**
 > ConfigurationSet updateConfigurationSet(type, scope, code, updateConfigurationSet, userId)
 
-[EXPERIMENTAL] UpdateConfigurationSet: Update the description of a configuration set
+[EARLY ACCESS] UpdateConfigurationSet: Update the description of a configuration set
 
 ### Example
 ```java

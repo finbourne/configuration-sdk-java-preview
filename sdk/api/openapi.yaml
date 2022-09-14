@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE ConfigurationService API
-  version: 0.1.275
+  version: 0.1.331
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -136,11 +136,11 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: '[EXPERIMENTAL] ListConfigurationSets: List all configuration sets
+      summary: '[EARLY ACCESS] ListConfigurationSets: List all configuration sets
         summaries (I.e. list of scope/code combinations available)'
       tags:
       - ConfigurationSets
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: EarlyAccess
       x-accepts: application/json
     post:
       operationId: CreateConfigurationSet
@@ -281,10 +281,10 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: '[EXPERIMENTAL] CreateConfigurationSet: Create a configuration set'
+      summary: '[EARLY ACCESS] CreateConfigurationSet: Create a configuration set'
       tags:
       - ConfigurationSets
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: EarlyAccess
       x-contentType: application/json-patch+json
       x-accepts: application/json
   /api/sets/personal/me:
@@ -301,11 +301,32 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: '[EXPERIMENTAL] DeleteAccessToken: Delete any stored Personal Access
+      summary: '[EARLY ACCESS] DeleteAccessToken: Delete any stored Personal Access
         Token for the current user'
       tags:
       - ConfigurationSets
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: EarlyAccess
+      x-accepts: application/json
+    head:
+      operationId: CheckAccessTokenExists
+      responses:
+        "200":
+          description: The Personal Access Token exists
+        "404":
+          description: The Personal Access Token does not exist
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Error response
+      security:
+      - oauth2: []
+      summary: '[BETA] CheckAccessTokenExists: Check the Personal Access Token exists
+        for the current user'
+      tags:
+      - ConfigurationSets
+      x-fbn-apistatus: Beta
       x-accepts: application/json
     put:
       operationId: GenerateAccessToken
@@ -380,11 +401,11 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: '[EXPERIMENTAL] GenerateAccessToken: Generate a Personal Access Token
+      summary: '[EARLY ACCESS] GenerateAccessToken: Generate a Personal Access Token
         for the current user and stores it in the me token'
       tags:
       - ConfigurationSets
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: EarlyAccess
       x-accepts: application/json
   /api/sets/system/{code}:
     get:
@@ -556,12 +577,12 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] GetSystemConfigurationSets: Get the specified system\
+      summary: "[EARLY ACCESS] GetSystemConfigurationSets: Get the specified system\
         \ configuration sets, including all their associated metadata. By default\
         \ secrets will not be revealed\r\nAll users have access to this endpoint"
       tags:
       - ConfigurationSets
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: EarlyAccess
       x-accepts: application/json
   /api/sets/system/{code}/items/{key}:
     get:
@@ -715,12 +736,12 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] GetSystemConfigurationItems: Get the specific system\
+      summary: "[EARLY ACCESS] GetSystemConfigurationItems: Get the specific system\
         \ configuration items within a system set\r\nAll users have access to this\
         \ endpoint"
       tags:
       - ConfigurationSets
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: EarlyAccess
       x-accepts: application/json
   /api/sets/{type}/{scope}/{code}:
     delete:
@@ -809,11 +830,11 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: '[EXPERIMENTAL] DeleteConfigurationSet: Deletes a configuration set
+      summary: '[EARLY ACCESS] DeleteConfigurationSet: Deletes a configuration set
         along with all their configuration items'
       tags:
       - ConfigurationSets
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: EarlyAccess
       x-accepts: application/json
     get:
       operationId: GetConfigurationSet
@@ -971,11 +992,11 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: '[EXPERIMENTAL] GetConfigurationSet: Get a configuration set, including
+      summary: '[EARLY ACCESS] GetConfigurationSet: Get a configuration set, including
         all the associated metadata. By default secrets will not be revealed'
       tags:
       - ConfigurationSets
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: EarlyAccess
       x-accepts: application/json
     put:
       operationId: UpdateConfigurationSet
@@ -1145,11 +1166,11 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: '[EXPERIMENTAL] UpdateConfigurationSet: Update the description of a
+      summary: '[EARLY ACCESS] UpdateConfigurationSet: Update the description of a
         configuration set'
       tags:
       - ConfigurationSets
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: EarlyAccess
       x-contentType: application/json-patch+json
       x-accepts: application/json
   /api/sets/{type}/{scope}/{code}/items:
@@ -1337,11 +1358,11 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: '[EXPERIMENTAL] AddConfigurationToSet: Add a configuration item to
+      summary: '[EARLY ACCESS] AddConfigurationToSet: Add a configuration item to
         an existing set'
       tags:
       - ConfigurationSets
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: EarlyAccess
       x-contentType: application/json-patch+json
       x-accepts: application/json
   /api/sets/{type}/{scope}/{code}/items/{key}:
@@ -1443,11 +1464,11 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: '[EXPERIMENTAL] DeleteConfigurationItem: Remove the specified configuration
+      summary: '[EARLY ACCESS] DeleteConfigurationItem: Remove the specified configuration
         item from the specified configuration set'
       tags:
       - ConfigurationSets
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: EarlyAccess
       x-accepts: application/json
     get:
       operationId: GetConfigurationItem
@@ -1602,11 +1623,11 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: '[EXPERIMENTAL] GetConfigurationItem: Get the specific configuration
+      summary: '[EARLY ACCESS] GetConfigurationItem: Get the specific configuration
         item within an existing set'
       tags:
       - ConfigurationSets
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: EarlyAccess
       x-accepts: application/json
     put:
       operationId: UpdateConfigurationItem
@@ -1777,11 +1798,11 @@ paths:
           description: Error response
       security:
       - oauth2: []
-      summary: '[EXPERIMENTAL] UpdateConfigurationItem: Update a configuration item''s
+      summary: '[EARLY ACCESS] UpdateConfigurationItem: Update a configuration item''s
         value and/or description'
       tags:
       - ConfigurationSets
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: EarlyAccess
       x-contentType: application/json-patch+json
       x-accepts: application/json
 components:
