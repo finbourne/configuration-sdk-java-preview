@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Success |  -  |
+**201** | Created |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | No configuration set exists with the provided identifiers |  -  |
 **0** | Error response |  -  |
@@ -223,7 +223,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Success |  -  |
+**201** | Created |  -  |
 **400** | The details of the input related failure |  -  |
 **0** | Error response |  -  |
 
@@ -285,7 +285,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Success |  -  |
+**204** | No Content |  -  |
 **0** | Error response |  -  |
 
 <a name="deleteConfigurationItem"></a>
@@ -358,7 +358,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Success |  -  |
+**204** | No Content |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | No configuration item exists with the provided identifiers |  -  |
 **0** | Error response |  -  |
@@ -431,7 +431,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Success |  -  |
+**204** | No Content |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | No configuration set exists with the provided identifiers |  -  |
 **0** | Error response |  -  |
